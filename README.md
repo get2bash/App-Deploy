@@ -10,7 +10,7 @@
 - Create network stack ```aws cloudformation create-stack --stack-name AppDeploy --template-body file://network.yml  --parameters file://network-parameter.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1```
 
 ## Server provisioning
-- - Create network stack ```aws cloudformation update-stack --stack-name AppDeploy --template-body file://server.yml  --parameters file://server-parameter.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1```
+- Create network stack ```aws cloudformation update-stack --stack-name AppDeploy --template-body file://server.yml  --parameters file://server-parameter.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1```
 
 ## Security
 - AWS Access Key
@@ -25,4 +25,4 @@ ansible-vault create aws_keys.yml
 
 ## Tools
 - [Ansible: Configuration management tool](https://www.ansible.com/)
-- [AWS Cloudormation: A service that helps you model and set up your AWS resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+- [AWS CloudFormation: A service that helps you model and set up your AWS resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
