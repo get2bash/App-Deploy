@@ -49,13 +49,14 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          apt-get update -y
-          apt-get install nginx -y
-          systemctl start nginx.service
-          sudo apt-get install gunicorn
-          sudo apt-get install python3-pip
+          sudo apt-get update -y
+          sudo apt-get install nginx -y
+          sudo systemctl start nginx.service
+          sudo apt-get install gunicorn -y
+          sudo apt-get install python3-pip -y
           sudo ufw allow 22
           sudo ufw allow 'Nginx Full'
+          sudo ufw allow 8000
           sudo ufw allow 5000
           sudo ufw --force enable
           sudo hostnamectl set-hostname App_deploy
