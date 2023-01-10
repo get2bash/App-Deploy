@@ -1,14 +1,3 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: >-
-  AWS CloudFormation Sample Template ELBWithLockedDownAutoScaledInstances:
-  Create a load balanced, Auto Scaled sample website where the instances are
-  locked down to only accept traffic from the load balancer. This example
-  creates an Auto Scaling group behind a load balancer with a simple health
-  check. The web site is available on port 80, however, the instances can be
-  configured to listen on any port (8888 by default). **WARNING** This template
-  creates one or more Amazon EC2 instances and an Application Load Balancer. You
-  will be billed for the AWS resources used if you create a stack from this
-
 Parameters:
 
     EnvironmentName:
@@ -61,11 +50,23 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           apt-get update -y
-          apt-get install apache2 -y
-          systemctl start apache2.service
-          cd /var/www/html
-          echo "it works! This a new project, Thank you" > index.html          
-      ImageId: ami-0530ca8899fac469f 
+          apt-get install nginx -y
+          systemctl start nginx.service
+          sudo apt-get install gunicorn
+          sudo apt-get install python3-pip
+          sudo ufw allow 22
+          sudo ufw allow 'Nginx Full'
+          sudo ufw allow 5000
+          sudo ufw --force enable
+          sudo hostnamectl set-hostname App_deploy
+          git clone https://github.com/get2bash/flask_app.git
+          cd flask_app
+          sudo pip install -r requirements.txt
+          sudo mv flask_app /etc/nginx/sites-enabled
+          sudo unlink /etc/nginx/sites-enabled/default
+          sudo nginx -s reload
+          gunicorn --workers=2 app:app —daemon
+      ImageId: ami-0a6b2839d44d781b2
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.micro
