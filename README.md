@@ -12,6 +12,10 @@
 ## Server provisioning
 - Create network stack ```aws cloudformation create-stack --stack-name server --template-body file://server.yml --parameters file://server-parameter.json --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=us-east-1```
 
+![Screen Shot 2023-01-11 at 7 24 50 PM](https://user-images.githubusercontent.com/97449891/211889362-d41b5e5e-044b-4045-b27c-838948fb1820.png)
+![Screen Shot 2023-01-11 at 7 26 02 PM](https://user-images.githubusercontent.com/97449891/211889444-1b5ad1f5-0ae1-4ee8-956e-1ed755882a4c.png)
+
+
 ## The UseData will:
 - Update the server
 - Install all required tools
