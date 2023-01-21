@@ -52,21 +52,10 @@ Resources:
           sudo apt-get update -y
           sudo apt-get install nginx -y
           sudo systemctl start nginx.service
-          sudo apt-get install gunicorn -y
-          sudo apt-get install python3-pip -y
-          sudo ufw allow 22
-          sudo ufw allow 'Nginx Full'
-          sudo ufw allow 8000
-          sudo ufw allow 5000
-          sudo ufw --force enable
-          sudo hostnamectl set-hostname App_deploy
-          git clone https://github.com/get2bash/flask_app.git
-          cd flask_app
-          sudo pip install -r requirements.txt
-          sudo mv flask_app /etc/nginx/sites-enabled
-          sudo unlink /etc/nginx/sites-enabled/default
-          sudo nginx -s reload
-          gunicorn --workers=2 app:app —daemon
+          cd /var/www/html
+          ipAddress=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+          echo "Server Up and Currently Running With The $ipAddress Instance!" > index.html
+          sudo systemctl restart nginx
       ImageId: ami-0a6b2839d44d781b2
       SecurityGroups:
       - Ref: WebServerSecGroup
