@@ -1,6 +1,6 @@
 # App-deployment
 ## About
-- Deploying a python app that displays the hostname and IP of ther underlaying server using AWS CloudFormation for infrastructure provisioning and server configuration.
+- Deploying a server that displays it's IP using AWS CloudFormation for infrastructure provisioning and server configuration.
 
 ## Prerequisite
 - AWS CLI
@@ -19,12 +19,15 @@
 ## The UseData will:
 - Update the server
 - Install all required tools
-- Clone the app repo
-- Configure nginx, ufw and systemd
+- Configure nginx
 - Enable and start services
 
-## Running the App using Gunicorn
-```gunicorn --workers=2 app:app —daemon```
+## Running server with loadbalancer
+![Screen Shot 2023-01-21 at 1 59 43 AM](https://user-images.githubusercontent.com/97449891/213830878-b3a6b968-0a5e-4bc6-9f35-b8007583d24e.png)
+![Screen Shot 2023-01-21 at 1 59 29 AM](https://user-images.githubusercontent.com/97449891/213830891-90d87df0-4d26-4439-bef1-094dc417f14e.png)
+
+
+
 
 ## Logical network
 ![Flowcharts](https://user-images.githubusercontent.com/97449891/211727648-28ad767a-1364-43e4-9ae2-4b7784cb657f.jpeg)
@@ -32,5 +35,4 @@
 
 ## Tools
 - [AWS CloudFormation: A service that helps you model and set up your AWS resources.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
-- [Gunicorn: Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.](https://gunicorn.org/)
 
